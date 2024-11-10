@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Comigo?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            font-family: 'Arial', sans-serif;
+        }
+        #botao-sim,
+        #botao-nao {
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            margin: 10px;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: #ff1493;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        #botao {
+            font-size: 28px;
+            padding: 20px 40px;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            background: #fff;
+            color: #ff1493;
+            margin-bottom: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
+        }
+        #botoes-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        #botao-sim:hover {
+            transform: scale(1.1);
+            background: #ff1493;
+            color: white;
+        }
+        #botao-nao:hover {
+            transform: scale(0.9);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .mensagem {
+            position: fixed;
+            top: 20px;
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            color: #ff1493;
+            font-weight: bold;
+            display: none;
+            animation: aparecer 0.5s ease-out;
+        }
+        @keyframes aparecer {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="mensagem" id="mensagem">VOCÊ QUER SIM!!</div>
+    <div id="botoes-container">
+        <button id="botao">Casa Comigo?</button>
+        <button id="botao-sim">Sim</button>
+        <button id="botao-nao">Não</button>
+    </div>
+
+    <script>
+        const botaoSim = document.getElementById('botao-sim');
+        const botaoNao = document.getElementById('botao-nao');
+        const mensagem = document.getElementById('mensagem');
+        const videoUrl = 'https://www.youtube.com/watch?v=kQ2ZFVJNMs0';
+
+        botaoSim.addEventListener('click', () => {
+            window.location.href = videoUrl;
+        });
+
+        botaoNao.addEventListener('click', () => {
+            mensagem.style.display = 'block';
+            setTimeout(() => {
+                mensagem.style.display = 'none';
+            }, 2000);
+            
+            const randomX = Math.random() * (window.innerWidth - botaoNao.offsetWidth);
+            const randomY = Math.random() * (window.innerHeight - botaoNao.offsetHeight);
+            
+            botaoNao.style.position = 'fixed';
+            botaoNao.style.left = randomX + 'px';
+            botaoNao.style.top = randomY + 'px';
+        });
+    </script>
+</body>
+</html>
